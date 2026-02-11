@@ -1,0 +1,179 @@
+User-agent: *
+Allow: /
+
+#################################
+# GOOGLE
+#################################
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
+Allow: /
+User-agent: Googlebot-Video
+Allow: /
+User-agent: Googlebot-News
+Allow: /
+User-agent: Googlebot-AdsBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+#################################
+# MICROSOFT / BING / COPILOT
+#################################
+User-agent: Bingbot
+Allow: /
+User-agent: BingPreview
+Allow: /
+User-agent: MSNBot
+Allow: /
+
+#################################
+# OPENAI
+#################################
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+#################################
+# ANTHROPIC
+#################################
+User-agent: ClaudeBot
+Allow: /
+
+#################################
+# PERPLEXITY
+#################################
+User-agent: PerplexityBot
+Allow: /
+
+#################################
+# APPLE
+#################################
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+#################################
+# META / FACEBOOK / INSTAGRAM
+#################################
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Meta-ExternalFetcher
+Allow: /
+User-agent: FacebookBot
+Allow: /
+User-agent: Facebot
+Allow: /
+
+#################################
+# AMAZON
+#################################
+User-agent: Amazonbot
+Allow: /
+
+#################################
+# COMMON CRAWL (BIG AI DATASET)
+#################################
+User-agent: CCBot
+Allow: /
+
+#################################
+# DUCKDUCKGO
+#################################
+User-agent: DuckDuckBot
+Allow: /
+
+#################################
+# YANDEX
+#################################
+User-agent: YandexBot
+Allow: /
+User-agent: YandexImages
+Allow: /
+User-agent: YandexVideo
+Allow: /
+
+#################################
+# BAIDU
+#################################
+User-agent: Baiduspider
+Allow: /
+
+#################################
+# SEO / ANALYTICS TOOLS
+#################################
+User-agent: AhrefsBot
+Allow: /
+User-agent: SemrushBot
+Allow: /
+User-agent: MJ12bot
+Allow: /
+User-agent: DotBot
+Allow: /
+User-agent: ScreamingFrogSEO
+Allow: /
+User-agent: SiteAuditBot
+Allow: /
+
+#################################
+# SOCIAL / PREVIEWS
+#################################
+User-agent: Twitterbot
+Allow: /
+User-agent: LinkedInBot
+Allow: /
+User-agent: Slackbot
+Allow: /
+User-agent: Discordbot
+Allow: /
+User-agent: TelegramBot
+Allow: /
+
+#################################
+# TIKTOK / BYTEDANCE
+#################################
+User-agent: Bytespider
+Allow: /
+
+#################################
+# ARCHIVES / LIBRARIES
+#################################
+User-agent: ia_archiver
+Allow: /
+User-agent: archive.org_bot
+Allow: /
+
+#################################
+# AI / SEARCH STARTUPS
+#################################
+User-agent: YouBot
+Allow: /
+User-agent: Neevabot
+Allow: /
+User-agent: AndiBot
+Allow: /
+User-agent: Exabot
+Allow: /
+User-agent: MojeekBot
+Allow: /
+User-agent: Qwantify
+Allow: /
+User-agent: Sogou
+Allow: /
+
+#################################
+# MISC / GENERIC
+#################################
+User-agent: PetalBot
+Allow: /
+User-agent: SeznamBot
+Allow: /
+User-agent: Gigabot
+Allow: /
+
+#################################
+# SITEMAP
+#################################
+Sitemap: https://ilhanpk.vercel.app/sitemap.xml
