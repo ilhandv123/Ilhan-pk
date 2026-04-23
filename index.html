@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ilhan PK</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Using system SF Pro where available, fallback to similar -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg:       #000000;
+      --bg2:      #0a0a0a;
+      --bg3:      #111111;
+      --border:   rgba(255,255,255,0.08);
+      --text:     #f5f5f7;
+      --muted:    #6e6e73;
+      --accent:   #f5f5f7;
+      --blue:     #2997ff;
+      --radius:   18px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 52px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-title {
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.02;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-title .light { font-weight: 300; }
+
+    .hero-sub {
+      margin-top: 22px;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 36px;
+      display: flex;
+      gap: 14px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .btn {
+      padding: 12px 26px;
+      border-radius: 980px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #4aabff; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid rgba(41,151,255,0.35);
+    }
+    .btn-ghost:hover {
+      background: rgba(41,151,255,0.1);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 1s 0.9s ease both, pulse 2s 2s ease infinite;
+    }
+    .hero-scroll i { font-size: 1rem; }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 100px 24px;
+      max-width: 980px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 52px;
+    }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    .about-stat {
+      margin-top: 36px;
+      display: flex;
+      gap: 40px;
+    }
+
+    .stat-item { }
+    .stat-num {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--text);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg3);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .info-row i {
+      width: 20px;
+      text-align: center;
+      color: var(--blue);
+      font-size: 0.95rem;
+    }
+    .info-row span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .info-row strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── GAMES ── */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 52px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    @media (max-width: 580px) {
+      .games-grid { grid-template-columns: 1fr; }
+    }
+
+    .game-tile {
+      background: var(--bg3);
+      padding: 36px 32px;
+      position: relative;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .game-tile:hover { background: #161616; }
+
+    .game-tile:first-child { border-radius: var(--radius) 0 0 0; }
+    .game-tile:nth-child(2) { border-radius: 0 var(--radius) 0 0; }
+    .game-tile:nth-child(3) { border-radius: 0 0 0 var(--radius); }
+    .game-tile:last-child { border-radius: 0 0 var(--radius) 0; }
+
+    .tile-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(41,151,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--blue);
+      font-size: 1.1rem;
+    }
+
+    .game-tile h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+
+    .game-tile p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .tile-tags {
+      margin-top: 18px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tile-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.5px;
+      color: var(--blue);
+      background: rgba(41,151,255,0.1);
+      padding: 3px 10px;
+      border-radius: 980px;
+    }
+
+    /* ── STACK ── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 2px;
+      margin-top: 52px;
+    }
+
+    .stack-item {
+      background: var(--bg3);
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .stack-item:first-child { border-radius: 12px 0 0 0; }
+    .stack-item:hover { background: #161616; }
+
+    .stack-item i {
+      font-size: 1rem;
+      color: var(--muted);
+      width: 18px;
+      text-align: center;
+    }
+
+    .stack-item span {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── PROJECTS ── */
+    .proj-list {
+      margin-top: 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .proj-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 24px;
+      background: var(--bg3);
+      transition: background 0.2s;
+      gap: 16px;
+    }
+    .proj-item:first-child { border-radius: 12px 12px 0 0; }
+    .proj-item:last-child  { border-radius: 0 0 12px 12px; }
+    .proj-item:hover { background: #161616; }
+
+    .proj-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .proj-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .proj-name {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .proj-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .proj-arrow {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 52px;
+    }
+
+    @media (max-width: 560px) {
+      .contact-cards { grid-template-columns: 1fr; }
+    }
+
+    .contact-card {
+      background: var(--bg3);
+      padding: 32px 28px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contact-card:first-child { border-radius: 12px 0 0 12px; }
+    .contact-card:last-child  { border-radius: 0 12px 12px 0; }
+    .contact-card:hover { background: #161616; }
+
+    .contact-card i {
+      font-size: 1.3rem;
+      color: var(--blue);
+    }
+
+    .contact-card .c-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .contact-card .c-handle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(24px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 0.8; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Ilhan PK</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Developer & 3D Game Builder</p>
+  <h1 class="hero-title">
+    <span class="light">Hello, I'm</span><br>Ilhan PK.
+  </h1>
+  <p class="hero-sub">
+    Building 3D games, Android apps, and backend tools — from Malappuram, Kerala.
+  </p>
+  <div class="hero-cta">
+    <a href="#games" class="btn btn-primary">View Games</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
+  <div class="hero-scroll">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="reveal">
+    <p class="eyebrow">About</p>
+    <h2 class="section-title">Student. Developer.<br>3D Builder.</h2>
+  </div>
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="section-body">
+        I'm Ilhan PK — a self-taught developer from Malappuram, Kerala. I build immersive 3D games using OpenGL ES on Android, craft backend systems in Python and Node.js, and design clean, functional apps.
+      </p>
+      <div class="about-stat">
+        <div class="stat-item">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">3D Games Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Projects Shipped</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right reveal">
+      <div class="info-row">
+        <i class="fas fa-location-dot"></i>
+        <span><strong>Malappuram, Kerala</strong> · India</span>
+      </div>
+      <div class="info-row">
+        <i class="fas fa-graduation-cap"></i>
+        <span><strong>Student</strong> Developer</span>
+      </div>
+      <div class="info-row">
+        <i class="fas fa-cube"></i>
+        <span><strong>OpenGL ES 3.0</strong> · 3D Game Dev</span>
+      </div>
+      <div class="info-row">
+        <i class="fab fa-android"></i>
+        <span><strong>Android</strong> · Kotlin</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GAMES -->
+<div class="section" id="games">
+  <div class="reveal">
+    <p class="eyebrow">3D Games</p>
+    <h2 class="section-title">Built with OpenGL ES.<br>Runs on Android.</h2>
+    <p class="section-body">Fully custom rendering pipelines — no Unity, no engine. Pure Kotlin and GLSL.</p>
+  </div>
+  <div class="games-grid reveal">
+    <div class="game-tile">
+      <div class="tile-icon"><i class="fas fa-car-side"></i></div>
+      <h3>Loop Race</h3>
+      <p>Android racing game with instanced VAO/VBO rendering, procedural grass terrain shader, and custom camera system.</p>
+      <div class="tile-tags">
+        <span class="tile-tag">OpenGL ES 3.0</span>
+        <span class="tile-tag">Kotlin</span>
+        <span class="tile-tag">GLSL</span>
+      </div>
+    </div>
+    <div class="game-tile">
+      <div class="tile-icon"><i class="fas fa-eye"></i></div>
+      <h3>Horror Maze</h3>
+      <p>First-person 3D maze with GLB model loading, random-wander enemy AI, gold key pickup, torch glow and minimap.</p>
+      <div class="tile-tags">
+        <span class="tile-tag">GLB Loader</span>
+        <span class="tile-tag">Enemy AI</span>
+        <span class="tile-tag">Minimap</span>
+      </div>
+    </div>
+    <div class="game-tile">
+      <div class="tile-icon"><i class="fas fa-globe"></i></div>
+      <h3>VistaCraft</h3>
+      <p>Open-world Android game with infinite procedural terrain, animated water via GLSL sine-wave, and first-person PVP.</p>
+      <div class="tile-tags">
+        <span class="tile-tag">Infinite Terrain</span>
+        <span class="tile-tag">Water Shader</span>
+      </div>
+    </div>
+    <div class="game-tile">
+      <div class="tile-icon"><i class="fas fa-seedling"></i></div>
+      <h3>Flower World</h3>
+      <p>WebGL world rendering 12,000 GPU-instanced flowers across infinite procedural terrain with mobile joystick controls.</p>
+      <div class="tile-tags">
+        <span class="tile-tag">WebGL</span>
+        <span class="tile-tag">GPU Instancing</span>
+        <span class="tile-tag">12k Objects</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STACK -->
+<div class="section" id="stack">
+  <div class="reveal">
+    <p class="eyebrow">Stack</p>
+    <h2 class="section-title">Languages &<br>Technologies.</h2>
+  </div>
+  <div class="stack-grid reveal">
+    <div class="stack-item"><i class="fas fa-cube"></i><span>OpenGL ES 3.0</span></div>
+    <div class="stack-item"><i class="fas fa-code"></i><span>GLSL Shaders</span></div>
+    <div class="stack-item"><i class="fas fa-layer-group"></i><span>WebGL</span></div>
+    <div class="stack-item"><i class="fab fa-android"></i><span>Kotlin</span></div>
+    <div class="stack-item"><i class="fas fa-mobile-screen"></i><span>Android SDK</span></div>
+    <div class="stack-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+    <div class="stack-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+    <div class="stack-item"><i class="fab fa-python"></i><span>Python</span></div>
+    <div class="stack-item"><i class="fas fa-flask"></i><span>Flask</span></div>
+    <div class="stack-item"><i class="fab fa-html5"></i><span>HTML / CSS</span></div>
+    <div class="stack-item"><i class="fab fa-php"></i><span>PHP</span></div>
+    <div class="stack-item"><i class="fas fa-server"></i><span>Backend APIs</span></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <div class="reveal">
+    <p class="eyebrow">Projects</p>
+    <h2 class="section-title">Other Things<br>I've Built.</h2>
+  </div>
+  <div class="proj-list reveal">
+    <div class="proj-item">
+      <div class="proj-left">
+        <div class="proj-dot"></div>
+        <div>
+          <div class="proj-name">OxViper Local Server App</div>
+          <div class="proj-meta">Android HTTP server · serves HTML from assets</div>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right proj-arrow"></i>
+    </div>
+    <div class="proj-item">
+      <div class="proj-left">
+        <div class="proj-dot"></div>
+        <div>
+          <div class="proj-name">ILHANBOT</div>
+          <div class="proj-meta">Minecraft bot · Mineflayer · Gemini AI integration</div>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right proj-arrow"></i>
+    </div>
+    <div class="proj-item">
+      <div class="proj-left">
+        <div class="proj-dot"></div>
+        <div>
+          <div class="proj-name">GeyserBridge</div>
+          <div class="proj-meta">Bedrock → Java proxy · Android app</div>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right proj-arrow"></i>
+    </div>
+    <div class="proj-item">
+      <div class="proj-left">
+        <div class="proj-dot"></div>
+        <div>
+          <div class="proj-name">YouTube Downloader API</div>
+          <div class="proj-meta">Flask · yt-dlp · FFmpeg · REST API</div>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right proj-arrow"></i>
+    </div>
+    <div class="proj-item">
+      <div class="proj-left">
+        <div class="proj-dot"></div>
+        <div>
+          <div class="proj-name">Location Finder Tool</div>
+          <div class="proj-meta">Web · JavaScript</div>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right proj-arrow"></i>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="reveal">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-title">Let's Connect.</h2>
+    <p class="section-body">Find me on any of these platforms.</p>
+  </div>
+  <div class="contact-cards reveal">
+    <a class="contact-card" href="https://github.com/ilhan-payanakkadavan" target="_blank">
+      <i class="fab fa-github"></i>
+      <span class="c-label">GitHub</span>
+      <span class="c-handle">ilhan-payanakkadavan</span>
+    </a>
+    <a class="contact-card" href="https://instagram.com/ilhan.pk" target="_blank">
+      <i class="fab fa-instagram"></i>
+      <span class="c-label">Instagram</span>
+      <span class="c-handle">@ilhan.pk</span>
+    </a>
+    <a class="contact-card" href="https://youtube.com/@OxViper" target="_blank">
+      <i class="fab fa-youtube"></i>
+      <span class="c-label">YouTube</span>
+      <span class="c-handle">OxViper</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  Copyright &copy; 2026 Ilhan PK &nbsp;·&nbsp; Malappuram, Kerala, India
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
