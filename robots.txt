@@ -1,0 +1,730 @@
+# =============================================================================
+# robots.txt — ilhanpk.vercel.app
+# Last updated: 2026-05-22
+# Specification: https://www.robotstxt.org/robotstxt.html
+# Extended syntax: https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt
+# Strategy: Training-opt-out + Search-opt-in + Citation-maximize
+# =============================================================================
+
+
+# =============================================================================
+# DEFAULT: RESTRICTIVE BASELINE
+# Well-behaved bots get full access except sensitive paths.
+# Aggressive scrapers fall through to blanket block at bottom.
+# =============================================================================
+User-agent: *
+Allow: /
+
+# Block sensitive & non-public paths (broad patterns, no treasure maps)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /staging/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /tmp/
+Disallow: /.well-known/
+Disallow: /404
+Disallow: /500
+
+# Block URL parameters that create duplicate content / tracking noise
+Disallow: /*?*utm_source=
+Disallow: /*?*utm_medium=
+Disallow: /*?*utm_campaign=
+Disallow: /*?*utm_content=
+Disallow: /*?*utm_term=
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+Disallow: /*?*ref=
+Disallow: /*?*session=
+Disallow: /*?*token=
+Disallow: /*?*id=
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+Crawl-delay: 2
+
+
+# =============================================================================
+# TIER 1 — MAJOR SEARCH ENGINES (No crawl delay, full access)
+# =============================================================================
+
+## Google
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Googlebot-Video
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Googlebot-News
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Googlebot-StoreBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Google Vertex AI / Gemini Enterprise (site-owner opted-in crawler)
+User-agent: Google-CloudVertexBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Bing / Microsoft
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+Crawl-delay: 1
+
+User-agent: msnbot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 1
+
+User-agent: msnbot-media
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: AdIdxBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Yahoo / Slurp
+User-agent: Slurp
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 2
+
+## Apple
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 2
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 2
+
+User-agent: DuckDuckGo-Favicons-Bot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Yandex
+User-agent: YandexBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+User-agent: YandexImages
+Allow: /
+Disallow: /private/
+
+User-agent: YandexVideo
+Allow: /
+Disallow: /private/
+
+User-agent: YandexMetrika
+Allow: /
+
+User-agent: YandexRenderResourcesBot
+Allow: /
+
+## Baidu
+User-agent: Baiduspider
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+User-agent: Baiduspider-image
+Allow: /
+Disallow: /private/
+
+User-agent: Baiduspider-video
+Allow: /
+Disallow: /private/
+
+User-agent: Baiduspider-news
+Allow: /
+Disallow: /private/
+
+## Naver (South Korea)
+User-agent: Yeti
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 2
+
+## Seznam (Czech Republic)
+User-agent: SeznamBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 2
+
+## Sogou (China)
+User-agent: Sogou
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+User-agent: Sogou web spider
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+
+# =============================================================================
+# TIER 2 — AI SEARCH & RETRIEVAL AGENTS (Citation drivers — ALLOW)
+# These fetch content in real-time to answer user queries. They drive traffic.
+# =============================================================================
+
+## OpenAI — Search & User-Triggered Retrieval
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Anthropic — Search & Web Retrieval (NOT training)
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Perplexity — Search & Real-time User Fetch
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Mistral / Le Chat — User-triggered retrieval
+User-agent: MistralAI-User
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+## Amazon — Alexa / Rufus product search
+User-agent: Amazonbot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## You.com
+User-agent: YouBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Andi Search
+User-agent: AndiBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Neeva (now Snowflake)
+User-agent: Neevabot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Mojeek
+User-agent: MojeekBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Exalead
+User-agent: Exabot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Gigablast
+User-agent: Gigabot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Petal (Huawei)
+User-agent: PetalBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+## Qwant
+User-agent: Qwantify
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 3
+
+
+# =============================================================================
+# TIER 3 — AI TRAINING CRAWLERS (Opt-out / Restricted)
+# These ingest bulk data for model training. Block to protect IP.
+# If you WANT training inclusion, move these to Tier 2.
+# =============================================================================
+
+## OpenAI — Training crawler
+User-agent: GPTBot
+Disallow: /
+# Allow: /          # Uncomment to allow OpenAI training
+
+## Anthropic — Training crawler
+User-agent: ClaudeBot
+Disallow: /
+# Allow: /          # Uncomment to allow Anthropic training
+
+## Google — Gemini / Bard training opt-out
+# Note: Google-Extended does NOT affect Google Search indexing
+User-agent: Google-Extended
+Disallow: /
+# Allow: /          # Uncomment to allow Gemini training
+
+## Meta — AI training scrapers
+User-agent: Meta-ExternalAgent
+Disallow: /
+# Allow: /          # Uncomment to allow Meta AI training
+
+User-agent: FacebookBot
+Disallow: /
+# Allow: /          # Uncomment to allow Meta AI training
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
+
+## Apple — Apple Intelligence training
+User-agent: Applebot-Extended
+# Already allowed in Tier 1 for search; 
+# For training opt-out, use meta tag: <meta name="Applebot-Extended" content="noindex, nofollow">
+
+## ByteDance / TikTok — Training
+User-agent: Bytespider
+Disallow: /
+# Allow: /          # Uncomment to allow ByteDance training
+
+## Cohere
+User-agent: cohere-ai
+Disallow: /
+# Allow: /          # Uncomment to allow Cohere training
+
+User-agent: cohere-training-bot
+Disallow: /
+
+## Common Crawl (feeds many open-source models)
+User-agent: CCBot
+Disallow: /
+# Allow: /          # Uncomment to allow Common Crawl
+
+## Diffbot (Knowledge Graph / training pipelines)
+User-agent: Diffbot
+Disallow: /
+# Allow: /          # Uncomment to allow Diffbot
+
+## Hive / Imagesift (image training)
+User-agent: ImagesiftBot
+Disallow: /
+# Allow: /          # Uncomment to allow image training
+
+User-agent: img2dataset
+Disallow: /
+
+## Omgili (AI training data)
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+## Bytedance generic
+User-agent: Bytedance
+Disallow: /
+
+
+# =============================================================================
+# TIER 4 — SOCIAL MEDIA & LINK PREVIEW BOTS
+# =============================================================================
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: LinkedInBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Slackbot
+Allow: /
+Disallow: /api/
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+Disallow: /api/
+
+User-agent: Discordbot
+Allow: /
+Disallow: /api/
+
+User-agent: TelegramBot
+Allow: /
+Disallow: /api/
+
+User-agent: WhatsApp
+Allow: /
+Disallow: /api/
+
+User-agent: Pinterestbot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Snapchat
+Allow: /
+Disallow: /api/
+
+User-agent: redditbot
+Allow: /
+Disallow: /api/
+
+User-agent: Embedly
+Allow: /
+Disallow: /api/
+
+User-agent: FacebookExternalHit
+Allow: /
+Disallow: /api/
+
+User-agent: Facebot
+Allow: /
+Disallow: /api/
+
+
+# =============================================================================
+# TIER 5 — SEO / ANALYTICS / MARKETING TOOLS
+# =============================================================================
+
+User-agent: AhrefsBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10
+
+User-agent: AhrefsSiteAudit
+Allow: /
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10
+
+User-agent: SemrushBot-SI
+Allow: /
+Crawl-delay: 10
+
+User-agent: SemrushBot-BA
+Allow: /
+Crawl-delay: 10
+
+User-agent: SemrushBot-SWA
+Allow: /
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10
+
+User-agent: DotBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10
+
+User-agent: ScreamingFrogSEO
+Allow: /
+Crawl-delay: 5
+
+User-agent: SiteAuditBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: DataForSeoBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: BLEXBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: linkdexbot
+Allow: /
+Crawl-delay: 10
+
+User-agent: Magestic-SEO
+Allow: /
+Crawl-delay: 10
+
+User-agent: moz.com
+Allow: /
+Crawl-delay: 10
+
+User-agent: rogerbot
+Allow: /
+Crawl-delay: 10
+
+User-agent: BrightEdge
+Allow: /
+Crawl-delay: 10
+
+User-agent: Botify
+Allow: /
+Crawl-delay: 10
+
+User-agent: Oncrawl
+Allow: /
+Crawl-delay: 10
+
+
+# =============================================================================
+# TIER 6 — WEB ARCHIVES & DIGITAL LIBRARIES
+# =============================================================================
+
+User-agent: ia_archiver
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10
+
+User-agent: archive.org_bot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10
+
+User-agent: Wayback
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+
+# =============================================================================
+# TIER 7 — MONITORING, UPTIME & CDN BOTS
+# =============================================================================
+
+User-agent: UptimeRobot
+Allow: /
+Crawl-delay: 60
+
+User-agent: Pingdom
+Allow: /
+Crawl-delay: 60
+
+User-agent: StatusCake
+Allow: /
+Crawl-delay: 60
+
+User-agent: site24x7
+Allow: /
+Crawl-delay: 60
+
+User-agent: Vercel-Monitor
+Allow: /
+
+User-agent: Cloudflare-Healthchecks
+Allow: /
+
+User-agent: BetterUptime
+Allow: /
+Crawl-delay: 60
+
+
+# =============================================================================
+# TIER 8 — BLOCKED: AGGRESSIVE / UNWANTED SCRAPERS & SECURITY SCANNERS
+# =============================================================================
+
+## Aggressive SEO scrapers
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: AhrefsBot-SA
+Disallow: /
+
+User-agent: MauiBot
+Disallow: /
+
+User-agent: BacklinkCrawler
+Disallow: /
+
+User-agent: SEOkicks
+Disallow: /
+
+User-agent: Xenu
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+## Security scanners & vulnerability probes
+User-agent: masscan
+Disallow: /
+
+User-agent: nikto
+Disallow: /
+
+User-agent: ZmEu
+Disallow: /
+
+User-agent: sqlmap
+Disallow: /
+
+User-agent: OpenVAS
+Disallow: /
+
+User-agent: Nessus
+Disallow: /
+
+User-agent: BurpSuite
+Disallow: /
+
+User-agent: Acunetix
+Disallow: /
+
+User-agent: Netsparker
+Disallow: /
+
+## Generic scraping frameworks
+User-agent: Wget
+Disallow: /
+
+User-agent: curl
+Disallow: /
+
+User-agent: libwww-perl
+Disallow: /
+
+User-agent: Python-urllib
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: HttpClient
+Disallow: /
+
+User-agent: Java
+Disallow: /
+
+User-agent: Go-http-client
+Disallow: /
+
+User-agent: node-fetch
+Disallow: /
+
+User-agent: axios
+Disallow: /
+
+## Undocumented / shadow crawlers
+User-agent: Barkrowler
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+
+# =============================================================================
+# SITEMAPS
+# =============================================================================
+Sitemap: https://ilhanpk.vercel.app/sitemap.xml
+
+
+# =============================================================================
+# HOST DIRECTIVE (preferred canonical domain)
+# =============================================================================
+Host: https://ilhanpk.vercel.app
