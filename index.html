@@ -1,218 +1,525 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ilhan Payyanakkadavan",
-  "alternateName": "Ilhan PK",
-  "url": "https://ilhanpk.vercel.app",
-  "jobTitle": "Student Developer",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "India"
-  },
-  "sameAs": [
-    "https://github.com/ilhan-payanakkadavan", 
-    "https://instagram.com/your_handle"
-  ],
-  "knowsAbout": ["Node.js", "Python", "JavaScript", "Web Development", "Backend Scripting"],
-  "description": "Ilhan Payanakkadavan is a student developer from India specializing in Node.js, backend systems, and custom web tools. and he living in Kerala malapuram"
-}
-</script>
 
-  <title>Ilhan payyanakkadavan</title>
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <style>
-    :root {
-      --red: #d90000;
-      --black: #0f0f0f;
-      --gray: #444;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Space Grotesk', sans-serif;
-    }
-
-    body {
-      background: #fff;
-      color: var(--black);
-    }
-
-    .container {
-      max-width: 880px;
-      margin: auto;
-      padding: 24px;
-    }
-
-    header {
-      padding: 48px 0;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-
-    header p {
-      margin-top: 10px;
-      color: var(--gray);
-    }
-
-    section {
-      margin-bottom: 36px;
-      padding: 28px;
-      border: 1.5px solid var(--red);
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      color: var(--red);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    p {
-      line-height: 1.7;
-    }
-
-    /* Code tags */
-    .codes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .code {
-      border: 1px solid var(--red);
-      padding: 6px 12px;
-      font-size: 0.9rem;
-    }
-
-    /* Projects */
-    .project {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1rem;
-      margin-bottom: 12px;
-    }
-
-    .project i {
-      color: var(--red);
-      font-size: 0.85rem;
-    }
-
-    /* Contact */
-    .contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
-
-    .contact a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid var(--red);
-      padding: 10px 14px;
-      text-decoration: none;
-      color: var(--black);
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px 0;
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2rem;
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ilhan PK | Student Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-error": "#690005",
+                "inverse-on-surface": "#2f3131",
+                "surface-container-high": "#282a2b",
+                "background": "#121414",
+                "secondary-fixed": "#e5e2e1",
+                "outline": "#aa8a7e",
+                "inverse-surface": "#e2e2e2",
+                "surface-container": "#1e2020",
+                "secondary-fixed-dim": "#c8c6c5",
+                "on-secondary-fixed-variant": "#474746",
+                "on-background": "#e2e2e2",
+                "surface-variant": "#333535",
+                "primary-fixed": "#ffdbcf",
+                "on-tertiary-fixed": "#2c1600",
+                "secondary-container": "#474746",
+                "error": "#ffb4ab",
+                "on-tertiary-container": "#402300",
+                "surface": "#121414",
+                "on-surface": "#e2e2e2",
+                "on-primary-container": "#4f1700",
+                "on-surface-variant": "#e3bfb2",
+                "inverse-primary": "#a83900",
+                "on-primary-fixed-variant": "#802a00",
+                "tertiary-fixed": "#ffdcbe",
+                "primary-container": "#f95e14",
+                "on-secondary": "#313030",
+                "surface-container-highest": "#333535",
+                "surface-tint": "#ffb59a",
+                "on-primary-fixed": "#380d00",
+                "on-secondary-fixed": "#1c1b1b",
+                "error-container": "#93000a",
+                "primary-fixed-dim": "#ffb59a",
+                "on-secondary-container": "#b7b5b4",
+                "surface-bright": "#37393a",
+                "on-tertiary": "#4a2800",
+                "outline-variant": "#5a4138",
+                "secondary": "#c8c6c5",
+                "primary": "#ffb59a",
+                "tertiary-container": "#d27c00",
+                "surface-container-lowest": "#0c0f0f",
+                "tertiary": "#ffb870",
+                "on-error-container": "#ffdad6",
+                "on-primary": "#5b1b00",
+                "tertiary-fixed-dim": "#ffb870",
+                "on-tertiary-fixed-variant": "#693c00",
+                "surface-container-low": "#1a1c1c",
+                "surface-dim": "#121414"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "unit": "4px",
+                "container-max": "1280px",
+                "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                "headline-xl-mobile": ["Montserrat"],
+                "label-bold": ["Inter"],
+                "headline-xl": ["Montserrat"],
+                "headline-md": ["Montserrat"],
+                "body-lg": ["Inter"],
+                "headline-lg": ["Montserrat"],
+                "body-md": ["Inter"]
+            },
+            "fontSize": {
+                "headline-xl-mobile": ["32px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                "label-bold": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+            }
+          },
+        },
       }
-    }
-  </style>
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .noir-card {
+            background-color: #121212;
+            border: 1px solid #1a1a1a;
+            transition: border-color 0.3s ease;
+        }
+        .noir-card:hover {
+            border-color: #f95e14;
+        }
+        .orange-glow {
+            text-shadow: 0 0 20px rgba(249, 94, 20, 0.4);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f95e14; }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
 </head>
-<body>
-
-<div class="container">
-
-  <!-- Header -->
-  <header>
-    <h1>Ilhan PK</h1>
-    <p>Student Developer · India</p>
-  </header>
-
-  <!-- About -->
-  <section>
-    <h2>About</h2>
-    <p>
-      I'm Ilhan PK, a student from India who loves coding and building clean web projects.
-      Currently working on Node.js websites and improving my backend and scripting skills.
-    </p>
-  </section>
-
-  <!-- Code Section -->
-  <section>
-    <h2>Code</h2>
-    <div class="codes">
-      <div class="code">HTML</div>
-      <div class="code">CSS</div>
-      <div class="code">JavaScript</div>
-      <div class="code">Node.js</div>
-      <div class="code">Python</div>
-      <div class="code">PHP</div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section>
-  <h2>projects</h2>
-  <div class="codes">
-    <div class="code">Pishing Tool</div>
-     <div class="code">Earth Movers Wepsite</div>
-      <div class="code">Apk Download Wepsite</div>
-        <div class="code">Location Finder Tool</div>
-          <div class="code">These projects were created mainly for practice and to pass the time</div>
-      
-   
-  </div>
-</section>
-
-  <!-- Contact -->
-  <section>
-    <h2>Contact</h2>
-    <div class="contact">
-      <a href="https://github.com/yourusername" target="_blank">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-      <a href="https://instagram.com/ilhan.pk" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    © 2026 Ilhan PK
-  </footer>
-
+<body class="bg-surface-container-lowest font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<canvas id="bg-canvas"></canvas>
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant h-20 transition-all duration-300" id="navbar">
+<div class="flex justify-between items-center w-full px-margin-desktop h-full max-w-container-max mx-auto">
+<a class="text-headline-md font-headline-md font-extrabold text-primary tracking-tighter" href="#">Ilhan PK</a>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-on-surface hover:text-primary transition-colors text-label-bold font-label-bold" href="#about">About</a>
+<a class="text-on-surface hover:text-primary transition-colors text-label-bold font-label-bold" href="#skills">Skills</a>
+<a class="text-on-surface hover:text-primary transition-colors text-label-bold font-label-bold" href="#projects">Projects</a>
+<a class="text-on-surface hover:text-primary transition-colors text-label-bold font-label-bold" href="#contact">Contact</a>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 font-label-bold text-label-bold hover:opacity-80 transition-opacity">Hire Me</button>
 </div>
+<button class="md:hidden text-primary" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="hidden md:hidden absolute top-20 left-0 w-full bg-surface-container border-b border-outline-variant p-6 flex flex-col gap-4" id="mobile-menu">
+<a class="text-on-surface text-label-bold" href="#about">About</a>
+<a class="text-on-surface text-label-bold" href="#skills">Skills</a>
+<a class="text-on-surface text-label-bold" href="#projects">Projects</a>
+<a class="text-on-surface text-label-bold" href="#contact">Contact</a>
+</div>
+</nav>
+<main class="pt-20">
+<section class="relative min-h-[90vh] flex items-center overflow-hidden px-margin-mobile md:px-margin-desktop py-20 pt-24 pb-12">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-7 z-10">
+<div class="inline-block border-l-4 border-primary-container pl-4 mb-6">
+<p class="text-primary font-label-bold uppercase tracking-widest text-label-bold">Student Developer · India</p>
+</div>
+<h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl mb-8 leading-none">
+                        Crafting Digital <br/>
+<span class="text-primary-container orange-glow">Noir Experiences.</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface max-w-xl mb-10 bg-background/40 backdrop-blur-sm p-4 border-l border-primary-container/30">
+                        Pioneering high-performance web solutions with Node.js and modern scripting techniques. Focused on backend integrity and cinematic UI clarity.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-primary-container text-on-primary-container px-10 py-4 font-label-bold text-label-bold flex items-center gap-2 hover:scale-[1.02] transition-transform" href="#projects">
+                            View Projects
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="border border-outline bg-background/20 backdrop-blur-sm px-10 py-4 font-label-bold text-label-bold hover:bg-surface-variant/20 transition-colors" href="#contact">
+                            Get In Touch
+                        </a>
+</div>
+</div>
+<div class="lg:col-span-5 relative flex justify-center lg:justify-end">
+<div class="relative w-72 h-72 md:w-[500px] md:h-[500px] flex items-center justify-center">
+<div class="absolute inset-0 z-0 opacity-40 md:opacity-100" id="hero-3d-container"></div>
+<div class="relative z-10 w-64 h-64 md:w-80 md:h-80 w-48 h-48">
+<div class="absolute -inset-4 bg-primary-container opacity-20 blur-3xl rounded-full"></div>
+<div class="absolute inset-0 border-2 border-primary-container rounded-full rotate-6 scale-105"></div>
+<div class="relative w-full h-full rounded-full overflow-hidden border-4 border-background shadow-2xl">
+<img alt="Portrait of Ilhan PK" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcIjQvjFyTsmf50I7z0Qf2ZfH1fkY6V8sivkUF_PPVAgy05aCLAxrUdk1J0Z2vX-kBOUzDn8CRTFGiQX3eXAr4oufCpiXF5_zo5Dp979rvN3li2GjnPfAD5YW7aoMLEQNMSo0eTselwXvrQcZMQ2G7lWzLDhjvLaZIEkDzDiRvEfh2eG1ZQearoKhCw-XDm9M4r193ZBXjHFbHEBHLWXH3UVIbTeD_qhQuB4grA7J44wezkVGbxVIZati20JWeLKo8iHKuUf8LTs0h"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface-container-low/80 backdrop-blur-sm px-margin-mobile md:px-margin-desktop border-y border-outline-variant/10 py-16" id="about">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4">
+<h2 class="text-headline-lg font-headline-lg text-primary mb-4">About Me</h2>
+<div class="w-16 h-1 bg-primary-container"></div>
+</div>
+<div class="md:col-span-8">
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+                            I'm Ilhan PK, a student from India who loves coding and building clean web projects. Currently working on Node.js websites and improving my backend and scripting skills. My approach is defined by "Technical Noir"—stripping away the unnecessary to reveal robust, efficient, and visually striking code architectures.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest/60 backdrop-blur-sm py-16" id="skills">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-headline-lg font-headline-lg mb-4">Core Technology Stack</h2>
+<p class="text-on-surface-variant max-w-lg mx-auto">Expertise in building scalable web applications and automation tools.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+<div class="noir-card p-8 flex flex-col items-center text-center group cursor-default">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 group-hover:scale-110 transition-transform">code</span>
+<span class="text-label-bold font-label-bold tracking-widest text-on-surface">HTML</span>
+</div>
+<div class="noir-card p-8 flex flex-col items-center text-center group cursor-default">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 group-hover:scale-110 transition-transform">palette</span>
+<span class="text-label-bold font-label-bold tracking-widest text-on-surface">CSS</span>
+</div>
+<div class="noir-card p-8 flex flex-col items-center text-center group cursor-default">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 group-hover:scale-110 transition-transform">javascript</span>
+<span class="text-label-bold font-label-bold tracking-widest text-on-surface">JS</span>
+</div>
+<div class="noir-card p-8 flex flex-col items-center text-center group cursor-default">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 group-hover:scale-110 transition-transform">terminal</span>
+<span class="text-label-bold font-label-bold tracking-widest text-on-surface">NODE.JS</span>
+</div>
+<div class="noir-card p-8 flex flex-col items-center text-center group cursor-default">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 group-hover:scale-110 transition-transform">memory</span>
+<span class="text-label-bold font-label-bold tracking-widest text-on-surface">PYTHON</span>
+</div>
+<div class="noir-card p-8 flex flex-col items-center text-center group cursor-default">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 group-hover:scale-110 transition-transform">database</span>
+<span class="text-label-bold font-label-bold tracking-widest text-on-surface">PHP</span>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-transparent" id="projects">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-16 flex-col items-start gap-4 mb-10">
+<div>
+<h2 class="text-headline-lg font-headline-lg mb-2">Featured Projects</h2>
+<p class="text-on-surface-variant">Practical explorations in security and utility.</p>
+</div>
+<a class="hidden md:flex items-center gap-2 text-primary hover:underline text-label-bold font-label-bold" href="https://github.com/ilhandv123">
+                        Github Repositories <span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter gap-6">
+<div class="md:col-span-8 noir-card p-1 relative overflow-hidden group">
+<div class="relative aspect-video w-full h-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6akkDteuERz9_DB0Y76uGt-IcjB32gNNi_bp34CKPEcRgYCIn0bcVLJcLgvQuwS_-9mVfSbEkyUigiYmIRUJNELx_Ij4CKbe0FHPaOd16yP-v-f4BMl3dxfMx8mBzhAnBYSWqOhB69FRnFmSkjb6prMYw4FZV4z6g2s6v-1pl7OyzNcI8s60C0DIfT46EeOmPyVandsxx_Z-dv6ZROomDoGdSFCimiMXpkStv2RGO3T3sEpHl1hQalcHJbIM4vzeKEOXNpeEBXDgF"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-10 flex flex-col justify-end">
+<span class="text-primary-container text-label-bold font-label-bold tracking-tighter mb-2">SECURITY UTILITY</span>
+<h3 class="text-headline-md font-headline-md mb-4 text-white">Pishing Tool</h3>
+<p class="text-on-surface-variant max-w-md mb-6">A sophisticated demonstration of social engineering concepts developed for practice and defensive awareness.</p>
+<div class="flex gap-4">
+<span class="px-3 py-1 bg-surface-variant/40 text-[12px] font-label-bold">PYTHON</span>
+<span class="px-3 py-1 bg-surface-variant/40 text-[12px] font-label-bold">SCRIPTING</span>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 noir-card p-1 group">
+<div class="relative h-full bg-surface-container/80 backdrop-blur-sm overflow-hidden p-8 flex flex-col justify-between">
+<div>
+<span class="text-primary-container text-label-bold font-label-bold tracking-tighter mb-2">CLIENT WEB</span>
+<h3 class="text-headline-md font-headline-md mb-4">Earth Movers Website</h3>
+<p class="text-on-surface-variant text-body-md">Commercial platform built for heavy machinery logistics and service management.</p>
+</div>
+<div class="pt-8">
+<span class="material-symbols-outlined text-4xl text-primary opacity-20 group-hover:opacity-100 group-hover:translate-x-2 transition-all">trending_flat</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 noir-card p-1 group">
+<div class="relative h-full bg-surface-container/80 backdrop-blur-sm overflow-hidden p-8 flex flex-col justify-between">
+<div>
+<span class="text-primary-container text-label-bold font-label-bold tracking-tighter mb-2">DISTRIBUTION</span>
+<h3 class="text-headline-md font-headline-md mb-4">Wep Jammer</h3>
+<p class="text-on-surface-variant text-body-md">A specialized tool for testing and analyzing wireless network security and traffic.</p>
+</div>
+<div class="pt-8">
+<span class="material-symbols-outlined text-4xl text-primary opacity-20 group-hover:opacity-100 group-hover:translate-x-2 transition-all">trending_flat</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-8 noir-card p-1 group relative overflow-hidden">
+<div class="relative aspect-video md:aspect-auto h-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVPNQky9p-1cHR2XaBbagi_x0Hgi_eK1UpllmzM29omNpNcQNqvAJSLdNMCdKvrJyhUwzlWUs6qBUfqTvHT1DEbKkuO10jonlYVPP0n4Frz0yAoU5UFIV07YGylK4hBTMoO18XJIfrGQhYm44KPTBDLngXnWuojevd8EHi2AQ1y_YZBVeWbogZvfT29mk7e5WXabIIj8B_WYh4lXbG5ZcXFpIuop8ZICgew4hBlRLKAPNwD5dKZ51J73SE1uZCyB9qZCftgERUnC5m"/>
+<div class="absolute inset-0 p-10 flex flex-col justify-center">
+<span class="text-primary-container text-label-bold font-label-bold tracking-tighter mb-2">GEOLOCATION</span>
+<h3 class="text-headline-lg font-headline-lg mb-4 text-white">Location Finder Tool</h3>
+<p class="text-on-surface-variant max-w-sm">A precision IP and GPS tracking utility developed to master API integrations and asynchronous logic.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 noir-card p-1 group">
+<div class="relative h-full bg-surface-container/80 backdrop-blur-sm overflow-hidden p-8 flex flex-col justify-between">
+<div>
+<span class="text-primary-container text-label-bold font-label-bold tracking-tighter mb-2">MOBILE GAMING</span>
+<h3 class="text-headline-md font-headline-md mb-4">OpenGL ES 3 Android Car Game</h3>
+<p class="text-on-surface-variant text-body-md">A high-performance mobile racing game built with OpenGL ES 3.0, focusing on shader optimization and physics.</p>
+</div>
+<div class="pt-8">
+<span class="material-symbols-outlined text-4xl text-primary opacity-20 group-hover:opacity-100 group-hover:translate-x-2 transition-all">sports_esports</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-8 noir-card p-1 group relative overflow-hidden">
+<div class="relative h-full bg-surface-container/80 backdrop-blur-sm overflow-hidden p-8 flex flex-col justify-between">
+<div class="z-10">
+<span class="text-primary-container text-label-bold font-label-bold tracking-tighter mb-2">AUTOMATION</span>
+<h3 class="text-headline-md font-headline-md mb-4">24/7 BOT</h3>
+<p class="text-on-surface-variant max-w-md mb-6">An automated bot for maintaining game server uptime and monitoring health metrics around the clock.</p>
+<a class="inline-flex items-center gap-2 text-primary hover:underline text-label-bold font-label-bold" href="https://github.com/ilhandv123/24-7BOT">
+        View Repository <span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+<div class="absolute right-0 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] leading-none">robot_2</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center text-on-surface-variant opacity-60 italic text-body-md">
+                    "These projects were created mainly for practice and to pass the time."
+                </div>
+</div>
+</section>
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest/40 backdrop-blur-sm border-t border-outline-variant/10" id="contact">
+<div class="max-w-container-max mx-auto text-center">
+<h2 class="text-headline-xl font-headline-xl mb-6 text-headline-lg md:text-headline-xl">Let's Connect</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
+                    Open for collaborations, internships, or just a technical chat about the latest in Node.js and web security.
+                </p>
+<div class="flex flex-col md:flex-row justify-center items-center gap-10 gap-6">
+<a class="group flex items-center gap-4 text-headline-md font-headline-md hover:text-primary transition-colors" href="https://github.com/ilhandv123">
+<span class="material-symbols-outlined text-4xl">terminal</span>GitHub</a>
+<a class="group flex items-center gap-4 text-headline-md font-headline-md hover:text-primary transition-colors" href="https://www.instagram.com/ilhan.pk?igsh=eHRhYWdud2Ftd3c=">
+<span class="material-symbols-outlined text-4xl">photo_camera</span>Instagram</a>
+<a class="group flex items-center gap-4 text-headline-md font-headline-md hover:text-primary transition-colors" href="mailto:ilhanpayyanakkadavan@gmail.com">
+<span class="material-symbols-outlined text-4xl">alternate_email</span>Email</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full py-20 px-margin-desktop bg-surface-container-lowest/80 backdrop-blur-sm border-t border-outline-variant py-12 px-margin-mobile">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary">Ilhan PK</span>
+<p class="text-body-md font-body-md text-on-surface-variant opacity-60">© 2026 Ilhan PK. Built with Technical Noir precision.</p>
+</div>
+<div class="flex gap-8 flex-wrap justify-center gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 text-label-bold font-label-bold uppercase tracking-widest" href="https://www.linkedin.com/in/ilhan-pk-8a2a8640a?utm_source=share_via&utm_content=profile&utm_medium=member_android">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 text-label-bold font-label-bold uppercase tracking-widest" href="https://github.com/ilhandv123">GitHub</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 text-label-bold font-label-bold uppercase tracking-widest" href="https://x.com/ilhanpk">X (Twitter)</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 text-label-bold font-label-bold uppercase tracking-widest" href="mailto:ilhanpayyanakkadavan@gmail.com">Email</a>
+</div>
+</div>
+</footer>
 
-</body>
-</html>
+<script>
+// ─── SHARED STATE ────────────────────────────────────────────────────────────
+let paused = false;
+document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+// ─── 1. WebGL SHADER BACKGROUND (optimized) ──────────────────────────────────
+const canvas = document.getElementById('bg-canvas');
+const gl = canvas.getContext('webgl', { antialias: false, powerPreference: 'low-power' });
+
+const vertSrc = `
+  attribute vec2 a_pos;
+  varying vec2 v_uv;
+  void main() {
+    v_uv = a_pos * 0.5 + 0.5;
+    gl_Position = vec4(a_pos, 0.0, 1.0);
+  }
+`;
+
+// OPTIMIZED: loop cut from 4→2 iterations, lowp precision where possible
+const fragSrc = `
+  precision mediump float;
+  uniform float u_time;
+  varying vec2 v_uv;
+
+  void main() {
+    vec2 p = v_uv * 3.0;
+    float noise = 0.0;
+
+    // 2 iterations instead of 4 — same look, half the ALU cost
+    p += vec2(0.1 * sin(p.y + u_time * 0.18), 0.1 * cos(p.x + u_time * 0.18));
+    noise += 0.5 * abs(sin(p.x + p.y + u_time * 0.09));
+
+    p += vec2(0.05 * sin(2.0 * p.y + u_time * 0.22), 0.05 * cos(2.0 * p.x + u_time * 0.22));
+    noise += 0.25 * abs(sin(p.x + p.y + u_time * 0.11));
+
+    vec3 dark   = vec3(0.07, 0.08, 0.08);
+    vec3 darker = vec3(0.03, 0.04, 0.04);
+    vec3 accent = vec3(0.90, 0.32, 0.00);
+
+    vec3 col = mix(darker, dark, v_uv.y + noise * 0.08);
+    float glow = smoothstep(1.0, 0.0, v_uv.y) * 0.12;
+    col += accent * glow * noise;
+
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+function makeShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+}
+const prog = gl.createProgram();
+gl.attachShader(prog, makeShader(gl.VERTEX_SHADER, vertSrc));
+gl.attachShader(prog, makeShader(gl.FRAGMENT_SHADER, fragSrc));
+gl.linkProgram(prog);
+
+const buf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+
+const aPos   = gl.getAttribLocation(prog, 'a_pos');
+const uTime  = gl.getUniformLocation(prog, 'u_time');
+
+// OPTIMIZED: resize canvas once on load + on window resize, NOT every frame
+function resizeBgCanvas() {
+    // render at 75% resolution for performance, CSS stretches it back
+    canvas.width  = Math.floor(window.innerWidth  * 0.75);
+    canvas.height = Math.floor(window.innerHeight * 0.75);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+}
+resizeBgCanvas();
+window.addEventListener('resize', resizeBgCanvas);
+
+// ─── 2. Three.js HERO 3D (optimized) ─────────────────────────────────────────
+const container = document.getElementById('hero-3d-container');
+const scene    = new THREE.Scene();
+const camera   = new THREE.PerspectiveCamera(75, 1, 0.1, 100);
+camera.position.z = 6;
+
+// OPTIMIZED: pixelRatio capped at 1.5, antialias off
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+container.appendChild(renderer.domElement);
+
+function resize3D() {
+    const w = container.clientWidth  || 300;
+    const h = container.clientHeight || 300;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+}
+resize3D();
+window.addEventListener('resize', resize3D);
+
+const mat = new THREE.MeshPhongMaterial({
+    color: 0xe65100, specular: 0x333333, shininess: 20,
+    wireframe: true, transparent: true, opacity: 0.55
+});
+
+const group = new THREE.Group();
+// OPTIMIZED: lower segment counts — 20 instead of 32 for sphere, 60 instead of 100 for torus
+const core = new THREE.Mesh(new THREE.SphereGeometry(1.2, 20, 20), mat);
+group.add(core);
+
+const ringGeo = new THREE.TorusGeometry(2.5, 0.02, 10, 60);
+const ringRotations = [[0.8, 0.3], [2.1, 1.4], [1.2, 2.7]];
+ringRotations.forEach(([rx, ry]) => {
+    const ring = new THREE.Mesh(ringGeo, mat);
+    ring.rotation.x = rx;
+    ring.rotation.y = ry;
+    group.add(ring);
+});
+scene.add(group);
+
+const ptLight = new THREE.PointLight(0xffffff, 1, 50);
+ptLight.position.set(5, 5, 5);
+scene.add(ptLight);
+scene.add(new THREE.AmbientLight(0x404040));
+
+// ─── 3. UNIFIED RAF LOOP ─────────────────────────────────────────────────────
+// Both renderers share one requestAnimationFrame — no double scheduling
+function tick(ts) {
+    requestAnimationFrame(tick);
+    if (paused) return;          // stop burning GPU when tab is hidden
+
+    const t = ts * 0.001;
+
+    // Background shader draw
+    gl.useProgram(prog);
+    gl.enableVertexAttribArray(aPos);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform1f(uTime, t);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+    // 3D hero animation
+    group.rotation.x += 0.002;
+    group.rotation.y += 0.003;
+    core.scale.setScalar(1.0 + Math.sin(t) * 0.05);
+    renderer.render(scene, camera);
+}
+requestAnimationFrame(tick);
+
+// ─── UI scroll effects ────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('bg-background/95', window.scrollY > 50);
+}, { passive: true });
+
+document.querySelectorAll('.noir-card').forEach(card => {
+    card.addEventListener('mouseenter', () => card.style.transform = 'scale(1.01)');
+    card.addEventListener('mouseleave', () => card.style.transform = 'scale(1)');
+});
+</script>
+</body></html>
