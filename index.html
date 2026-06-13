@@ -3,11 +3,10 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Ilhan PK | Student Developer</title>
+<title>Ilhan PK | Student Developer </title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -130,6 +129,43 @@
             z-index: -1;
             pointer-events: none;
         }
+        /* CSS light orbs replacing Three.js 3D elements */
+        .light-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+        .orb-main {
+            width: 340px; height: 340px;
+            background: radial-gradient(circle, rgba(249,94,20,0.35) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbPulse 4s ease-in-out infinite;
+        }
+        .orb-rim {
+            width: 480px; height: 480px;
+            background: radial-gradient(circle, rgba(249,94,20,0.12) 0%, transparent 65%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbPulse 4s ease-in-out infinite reverse;
+        }
+        .orb-accent {
+            width: 160px; height: 160px;
+            background: radial-gradient(circle, rgba(255,181,154,0.5) 0%, transparent 70%);
+            top: 30%; left: 60%;
+            transform: translate(-50%, -50%);
+            animation: orbDrift 6s ease-in-out infinite;
+        }
+        @keyframes orbPulse {
+            0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 1.0; transform: translate(-50%, -50%) scale(1.08); }
+        }
+        @keyframes orbDrift {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) translate(0, 0); }
+            33%       { opacity: 0.9; transform: translate(-50%, -50%) translate(12px, -16px); }
+            66%       { opacity: 0.7; transform: translate(-50%, -50%) translate(-10px, 10px); }
+        }
     </style>
 </head>
 <body class="bg-surface-container-lowest font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
@@ -181,7 +217,11 @@
 </div>
 <div class="lg:col-span-5 relative flex justify-center lg:justify-end">
 <div class="relative w-72 h-72 md:w-[500px] md:h-[500px] flex items-center justify-center">
-<div class="absolute inset-0 z-0 opacity-40 md:opacity-100" id="hero-3d-container"></div>
+<div class="absolute inset-0 z-0">
+<div class="light-orb orb-rim"></div>
+<div class="light-orb orb-main"></div>
+<div class="light-orb orb-accent"></div>
+</div>
 <div class="relative z-10 w-64 h-64 md:w-80 md:h-80 w-48 h-48">
 <div class="absolute -inset-4 bg-primary-container opacity-20 blur-3xl rounded-full"></div>
 <div class="absolute inset-0 border-2 border-primary-container rounded-full rotate-6 scale-105"></div>
@@ -372,7 +412,7 @@
 let paused = false;
 document.addEventListener('visibilitychange', () => { paused = document.hidden; });
 
-// ─── 1. WebGL SHADER BACKGROUND (optimized) ──────────────────────────────────
+// ─── WebGL SHADER BACKGROUND ──────────────────────────────────────────────────
 const canvas = document.getElementById('bg-canvas');
 const gl = canvas.getContext('webgl', { antialias: false, powerPreference: 'low-power' });
 
@@ -384,32 +424,23 @@ const vertSrc = `
     gl_Position = vec4(a_pos, 0.0, 1.0);
   }
 `;
-
-// OPTIMIZED: loop cut from 4→2 iterations, lowp precision where possible
 const fragSrc = `
   precision mediump float;
   uniform float u_time;
   varying vec2 v_uv;
-
   void main() {
     vec2 p = v_uv * 3.0;
     float noise = 0.0;
-
-    // 2 iterations instead of 4 — same look, half the ALU cost
     p += vec2(0.1 * sin(p.y + u_time * 0.18), 0.1 * cos(p.x + u_time * 0.18));
     noise += 0.5 * abs(sin(p.x + p.y + u_time * 0.09));
-
     p += vec2(0.05 * sin(2.0 * p.y + u_time * 0.22), 0.05 * cos(2.0 * p.x + u_time * 0.22));
     noise += 0.25 * abs(sin(p.x + p.y + u_time * 0.11));
-
     vec3 dark   = vec3(0.07, 0.08, 0.08);
     vec3 darker = vec3(0.03, 0.04, 0.04);
     vec3 accent = vec3(0.90, 0.32, 0.00);
-
     vec3 col = mix(darker, dark, v_uv.y + noise * 0.08);
     float glow = smoothstep(1.0, 0.0, v_uv.y) * 0.12;
     col += accent * glow * noise;
-
     gl_FragColor = vec4(col, 1.0);
   }
 `;
@@ -429,12 +460,10 @@ const buf = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buf);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
 
-const aPos   = gl.getAttribLocation(prog, 'a_pos');
-const uTime  = gl.getUniformLocation(prog, 'u_time');
+const aPos  = gl.getAttribLocation(prog, 'a_pos');
+const uTime = gl.getUniformLocation(prog, 'u_time');
 
-// OPTIMIZED: resize canvas once on load + on window resize, NOT every frame
 function resizeBgCanvas() {
-    // render at 75% resolution for performance, CSS stretches it back
     canvas.width  = Math.floor(window.innerWidth  * 0.75);
     canvas.height = Math.floor(window.innerHeight * 0.75);
     gl.viewport(0, 0, canvas.width, canvas.height);
@@ -442,73 +471,16 @@ function resizeBgCanvas() {
 resizeBgCanvas();
 window.addEventListener('resize', resizeBgCanvas);
 
-// ─── 2. Three.js HERO 3D (optimized) ─────────────────────────────────────────
-const container = document.getElementById('hero-3d-container');
-const scene    = new THREE.Scene();
-const camera   = new THREE.PerspectiveCamera(75, 1, 0.1, 100);
-camera.position.z = 6;
-
-// OPTIMIZED: pixelRatio capped at 1.5, antialias off
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-container.appendChild(renderer.domElement);
-
-function resize3D() {
-    const w = container.clientWidth  || 300;
-    const h = container.clientHeight || 300;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
-}
-resize3D();
-window.addEventListener('resize', resize3D);
-
-const mat = new THREE.MeshPhongMaterial({
-    color: 0xe65100, specular: 0x333333, shininess: 20,
-    wireframe: true, transparent: true, opacity: 0.55
-});
-
-const group = new THREE.Group();
-// OPTIMIZED: lower segment counts — 20 instead of 32 for sphere, 60 instead of 100 for torus
-const core = new THREE.Mesh(new THREE.SphereGeometry(1.2, 20, 20), mat);
-group.add(core);
-
-const ringGeo = new THREE.TorusGeometry(2.5, 0.02, 10, 60);
-const ringRotations = [[0.8, 0.3], [2.1, 1.4], [1.2, 2.7]];
-ringRotations.forEach(([rx, ry]) => {
-    const ring = new THREE.Mesh(ringGeo, mat);
-    ring.rotation.x = rx;
-    ring.rotation.y = ry;
-    group.add(ring);
-});
-scene.add(group);
-
-const ptLight = new THREE.PointLight(0xffffff, 1, 50);
-ptLight.position.set(5, 5, 5);
-scene.add(ptLight);
-scene.add(new THREE.AmbientLight(0x404040));
-
-// ─── 3. UNIFIED RAF LOOP ─────────────────────────────────────────────────────
-// Both renderers share one requestAnimationFrame — no double scheduling
+// ─── RAF LOOP (shader only now) ───────────────────────────────────────────────
 function tick(ts) {
     requestAnimationFrame(tick);
-    if (paused) return;          // stop burning GPU when tab is hidden
-
-    const t = ts * 0.001;
-
-    // Background shader draw
+    if (paused) return;
     gl.useProgram(prog);
     gl.enableVertexAttribArray(aPos);
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-    gl.uniform1f(uTime, t);
+    gl.uniform1f(uTime, ts * 0.001);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-    // 3D hero animation
-    group.rotation.x += 0.002;
-    group.rotation.y += 0.003;
-    core.scale.setScalar(1.0 + Math.sin(t) * 0.05);
-    renderer.render(scene, camera);
 }
 requestAnimationFrame(tick);
 
